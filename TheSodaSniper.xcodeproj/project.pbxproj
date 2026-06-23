@@ -6,8 +6,37 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		222336442FEAE8AB00FE2EFA /* Controller Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 2223363A2FEAE8AA00FE2EFA /* Controller Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		222336422FEAE8AB00FE2EFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 222336202FEAE88B00FE2EFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 222336392FEAE8AA00FE2EFA;
+			remoteInfo = "Controller Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		222336482FEAE8AB00FE2EFA /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				222336442FEAE8AB00FE2EFA /* Controller Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		222336282FEAE88B00FE2EFA /* TheSodaSniper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheSodaSniper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2223363A2FEAE8AA00FE2EFA /* Controller Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Controller Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +45,22 @@
 			path = TheSodaSniper;
 			sourceTree = "<group>";
 		};
+		2223363B2FEAE8AA00FE2EFA /* Controller Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Controller Watch App";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		222336252FEAE88B00FE2EFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		222336372FEAE8AA00FE2EFA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				2223362A2FEAE88B00FE2EFA /* TheSodaSniper */,
+				2223363B2FEAE8AA00FE2EFA /* Controller Watch App */,
 				222336292FEAE88B00FE2EFA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				222336282FEAE88B00FE2EFA /* TheSodaSniper.app */,
+				2223363A2FEAE8AA00FE2EFA /* Controller Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,10 +98,12 @@
 				222336242FEAE88B00FE2EFA /* Sources */,
 				222336252FEAE88B00FE2EFA /* Frameworks */,
 				222336262FEAE88B00FE2EFA /* Resources */,
+				222336482FEAE8AB00FE2EFA /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				222336432FEAE8AB00FE2EFA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				2223362A2FEAE88B00FE2EFA /* TheSodaSniper */,
@@ -68,6 +113,28 @@
 			);
 			productName = TheSodaSniper;
 			productReference = 222336282FEAE88B00FE2EFA /* TheSodaSniper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		222336392FEAE8AA00FE2EFA /* Controller Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 222336452FEAE8AB00FE2EFA /* Build configuration list for PBXNativeTarget "Controller Watch App" */;
+			buildPhases = (
+				222336362FEAE8AA00FE2EFA /* Sources */,
+				222336372FEAE8AA00FE2EFA /* Frameworks */,
+				222336382FEAE8AA00FE2EFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2223363B2FEAE8AA00FE2EFA /* Controller Watch App */,
+			);
+			name = "Controller Watch App";
+			packageProductDependencies = (
+			);
+			productName = "Controller Watch App";
+			productReference = 2223363A2FEAE8AA00FE2EFA /* Controller Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -81,6 +148,9 @@
 				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					222336272FEAE88B00FE2EFA = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					222336392FEAE8AA00FE2EFA = {
 						CreatedOnToolsVersion = 26.3;
 					};
 				};
@@ -100,12 +170,20 @@
 			projectRoot = "";
 			targets = (
 				222336272FEAE88B00FE2EFA /* TheSodaSniper */,
+				222336392FEAE8AA00FE2EFA /* Controller Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		222336262FEAE88B00FE2EFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		222336382FEAE8AA00FE2EFA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +200,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		222336362FEAE8AA00FE2EFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		222336432FEAE8AB00FE2EFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 222336392FEAE8AA00FE2EFA /* Controller Watch App */;
+			targetProxy = 222336422FEAE8AB00FE2EFA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		222336312FEAE88C00FE2EFA /* Debug */ = {
@@ -261,6 +354,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -293,6 +387,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,6 +402,72 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		222336462FEAE8AB00FE2EFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7MXYL2ADGX;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Controller;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sam.TheSodaSniper;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sam.TheSodaSniper.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		222336472FEAE8AB00FE2EFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7MXYL2ADGX;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Controller;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sam.TheSodaSniper;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sam.TheSodaSniper.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};
@@ -327,6 +488,15 @@
 			buildConfigurations = (
 				222336342FEAE88C00FE2EFA /* Debug */,
 				222336352FEAE88C00FE2EFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		222336452FEAE8AB00FE2EFA /* Build configuration list for PBXNativeTarget "Controller Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				222336462FEAE8AB00FE2EFA /* Debug */,
+				222336472FEAE8AB00FE2EFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
