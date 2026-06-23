@@ -11,26 +11,39 @@ struct MainMenuVIew: View {
     @ObservedObject var message = iOSConnectivity.shared
     
     var body: some View {
-        VStack{
-            HStack{
-                Button {
-                    message.sendMessage(["message": "Hi from iphone"])
-                } label: {
-                    Text("Hi")
+        ZStack{
+            Circle()
+                .frame(width: 60, height: 60)
+                .foregroundStyle(.cyan)
+                .position(x: 0, y: 0)
+            
+            VStack{
+                VStack{
+                    Text("Roll: \(message.roll, specifier: "%.2f")")
+                    Text("Pitch: \(message.pitch, specifier: "%.2f")")
+                    Text("Yaw: \(message.yaw, specifier: "%.2f")")
                 }
-                .buttonStyle(.borderedProminent)
                 
-                Button {
-                    message.sendMessage(["message": "watch cupuuu"])
-                } label: {
-                    Text("Boo")
+                HStack{
+                    Button {
+                        message.sendMessage(["message": "Hi from iphone"])
+                    } label: {
+                        Text("Hi")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    
+                    Button {
+                        message.sendMessage(["message": "watch cupuuu"])
+                    } label: {
+                        Text("Boo")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.red)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(.red)
+                
+                Text(message.message)
+                
             }
-            
-            Text(message.message)
-            
         }
 
     }

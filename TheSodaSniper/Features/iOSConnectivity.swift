@@ -13,6 +13,10 @@ class iOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
     
     @Published var message = ""
     
+    @Published var roll: Double = 0
+    @Published var pitch: Double = 0
+    @Published var yaw: Double = 0
+    
     override init(){
         super.init()
         
@@ -29,6 +33,16 @@ class iOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
             if let message = message["message"] as? String {
                 self.message = message
             }
+            if let roll = message["roll"] as? Double {
+                self.roll = roll
+            }
+            if let pitch = message["pitch"] as? Double {
+                self.pitch = pitch
+            }
+            if let yaw = message["yaw"] as? Double {
+                self.yaw = yaw
+            }
+        
         }
     
     }
