@@ -7,16 +7,24 @@
 
 import Combine
 import WatchConnectivity
+import UIKit
 
 class iOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
     static let shared = iOSConnectivity()
     
-    @Published var message = ""
+    @Published var localData = LocalData()
+    @Published var remoteData = RemoteData()
     
-    @Published var roll: Double = 0
-    @Published var pitch: Double = 0
-    @Published var yaw: Double = 0
+    var screenWidth: CGFloat {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 800 }
+        return windowScene.screen.bounds.width
+    }
     
+    var screenHeight: CGFloat {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 400 }
+        return windowScene.screen.bounds.height
+    }
+
     override init(){
         super.init()
         
@@ -31,18 +39,33 @@ class iOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         DispatchQueue.main.async {
             if let message = message["message"] as? String {
-                self.message = message
+                self.remoteData.message = message
             }
             if let roll = message["roll"] as? Double {
-                self.roll = roll
+                self.remoteData.roll = roll
             }
             if let pitch = message["pitch"] as? Double {
-                self.pitch = pitch
+                self.remoteData.pitch = pitch
             }
             if let yaw = message["yaw"] as? Double {
-                self.yaw = yaw
+                self.remoteData.yaw = yaw
             }
+            if let isCalibrated = message["isCalibrated"] as? Bool {
+                self.remoteData.isCalibrated = isCalibrated
+                
+                
+                if self.remoteData.isCalibrated {
+                    self.localData.calibratedRoll = self.remoteData.roll
+                    self.localData.calibratedPitch = self.remoteData.pitch
+                    self.localData.calibratedYaw = self.remoteData.yaw
+                }
+            }
+            print("kalibrasi dh: \(self.remoteData.isCalibrated)")
         
+            let rawX = self.remoteData.roll - self.localData.calibratedRoll
+            let rawZ = self.remoteData.yaw - self.localData.calibratedYaw
+            
+            self.processAiming(rawZ: rawZ, rawX: rawX)
         }
     
     }
@@ -65,4 +88,20 @@ class iOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
             WCSession.default.sendMessage(message, replyHandler: nil , errorHandler: nil)
         }
     }
+        
+    func processAiming(rawZ: Double, rawX: Double){
+        let gainX: CGFloat = 1600.0
+        let gainY: CGFloat = 400.0
+        
+        let calculatedX = (gainX * CGFloat(rawZ)) + (screenWidth/2)
+        let calculatedY = (gainY * CGFloat(rawX)) + (screenHeight/2)
+        
+        let finalX = min(max(calculatedX, 0), screenWidth)
+        let finalY = min(max(calculatedY, 0), screenHeight)
+        
+        localData.dotX = finalX
+        localData.dotY = finalY
+
+    }
+
 }

@@ -11,8 +11,8 @@ import WatchConnectivity
 class watchOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
     static let shared = watchOSConnectivity()
     
-    @Published var message = ""
-    
+    weak var motionManager: MotionControl?
+        
     override init(){
         super.init()
         
@@ -25,10 +25,8 @@ class watchOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        DispatchQueue.main.async {
-            if let message = message["message"] as? String {
-                self.message = message
-            }
+        if let message = message["message"] as? String {
+            motionManager?.receiveRemoteData(["message": message])
         }
     }
     

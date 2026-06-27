@@ -7,15 +7,19 @@
 
 import CoreMotion
 import Combine
+import Foundation
 
 class MotionControl: NSObject, ObservableObject {
     var motionManager = CMMotionManager()
     
-    @Published var roll: Double = 0
-    @Published var pitch: Double = 0
-    @Published var yaw: Double = 0
-    
-    var degConvert = 180/Double.pi
+    @Published var localData = LocalData()
+    @Published var remoteData = RemoteData()
+        
+    override init() {
+        super.init()
+        // KABEL INI WAJIB ADA BIAR KURIR BISA NGASIH PAKET KE MANAJER!
+        watchOSConnectivity.shared.motionManager = self
+    }
     
     func readSensor(){
         if motionManager.isDeviceMotionAvailable {
@@ -24,15 +28,24 @@ class MotionControl: NSObject, ObservableObject {
             
             motionManager.startDeviceMotionUpdates(to: .main) { (data, error) in
                 if let data = data {
-                    self.roll = data.attitude.roll * self.degConvert
-                    self.pitch = data.attitude.pitch * self.degConvert
-                    self.yaw = data.attitude.yaw * self.degConvert
+                    
+                    self.localData.roll = data.gravity.x
+                    self.localData.pitch = data.gravity.y
+                    self.localData.yaw = data.gravity.z
+                    
                     
                     watchOSConnectivity.shared.sendMessage([
-                        "roll": self.roll,
-                        "pitch": self.pitch,
-                        "yaw": self.yaw
+                        "roll": self.localData.roll,
+                        "pitch": self.localData.pitch,
+                        "yaw": self.localData.yaw,
+                        "message": self.localData.message,
+                        "isCalibrated": self.localData.isCalibrated
                     ])
+                    print(self.localData.isCalibrated)
+                    
+                    self.localData.isCalibrated = false
+                    
+                    print(self.localData.isCalibrated)
                 }
                 
             }
@@ -43,4 +56,12 @@ class MotionControl: NSObject, ObservableObject {
     func stopSensor(){
         motionManager.stopDeviceMotionUpdates()
     }
+    
+    func receiveRemoteData(_ message: [String: Any]) {
+            // Harus di main thread karena ngubah @Published
+            DispatchQueue.main.async {
+//                self.remoteData = data
+                self.remoteData.message = message["message"] as! String
+            }
+        }
 }

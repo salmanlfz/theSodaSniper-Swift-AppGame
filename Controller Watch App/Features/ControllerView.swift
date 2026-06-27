@@ -14,22 +14,30 @@ struct ControllerView: View {
     var body: some View {
         TabView{
             VStack{
-                Text("Roll: \(sensor.roll, specifier: "%.2f")")
-                Text("Pitch: \(sensor.pitch, specifier: "%.2f")")
-                Text("Yaw: \(sensor.yaw, specifier: "%.2f")")
+                Text("Roll: \(sensor.localData.roll, specifier: "%.2f")")
+                Text("Pitch: \(sensor.localData.pitch, specifier: "%.2f")")
+                Text("Yaw: \(sensor.localData.yaw, specifier: "%.2f")")
+                
+                Button {
+                    sensor.localData.isCalibrated = true
+                } label: {
+                    Text("Calibrate")
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.blue)
             }
             
             VStack{
                 HStack{
                     Button {
-                        message.sendMessage(["message": "Hi from watch"])
+                        sensor.localData.message = "Hi from watch"
                     } label: {
                         Text("Hi")
                     }
                     .buttonStyle(.borderedProminent)
                     
                     Button {
-                        message.sendMessage(["message": "iphone cupuuu"])
+                        sensor.localData.message = "iphone cupu"
                     } label: {
                         Text("Boo")
                     }
@@ -37,7 +45,7 @@ struct ControllerView: View {
                     .tint(.red)
                 }
                 
-                Text(message.message)
+                Text(sensor.remoteData.message)
                 
             }
         }
