@@ -17,12 +17,14 @@ class iOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
     
     var screenWidth: CGFloat {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 800 }
-        return windowScene.screen.bounds.width
+        let bounds = windowScene.screen.bounds
+        return max(bounds.width, bounds.height)
     }
     
     var screenHeight: CGFloat {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 400 }
-        return windowScene.screen.bounds.height
+        let bounds = windowScene.screen.bounds
+        return min(bounds.width, bounds.height)
     }
 
     override init(){
@@ -53,31 +55,35 @@ class iOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
             if let isCalibrated = message["isCalibrated"] as? Bool {
                 self.remoteData.isCalibrated = isCalibrated
                 
-                
                 if self.remoteData.isCalibrated {
                     self.localData.calibratedRoll = self.remoteData.roll
                     self.localData.calibratedPitch = self.remoteData.pitch
                     self.localData.calibratedYaw = self.remoteData.yaw
+                    
+                    // Kirim notifikasi kalau kalibrasi selesai!
+                    NotificationCenter.default.post(name: NSNotification.Name("WatchDidCalibrate"), object: nil)
                 }
             }
             if let isFire = message["isFire"] as? Bool {
                 self.remoteData.isFire = isFire
                 
                 if self.remoteData.isFire {
-                    // Di dalam file iOSConnectivity atau View lu pas nangkep trigger tembak:
                     SoundManager.shared.playShoot()
+                    // Kirim notifikasi kalau watch nembak!
+                    NotificationCenter.default.post(name: NSNotification.Name("WatchDidFire"), object: nil)
                 }
             }
             
             print("kalibrasi dh: \(self.remoteData.isCalibrated)")
             print("tembak ga dh: \(self.remoteData.isFire)")
         
-            let rawX = self.remoteData.roll - self.localData.calibratedRoll
-            let rawZ = self.remoteData.yaw - self.localData.calibratedYaw
+            // Karena Watch sudah mengirim data relatif (sudah dikalibrasi di sisi Watch),
+            // kita tidak perlu melakukan pengurangan ganda di sini agar bidikan tidak meleset!
+            let rawX = self.remoteData.roll
+            let rawZ = self.remoteData.yaw
             
             self.processAiming(rawZ: rawZ, rawX: rawX)
         }
-    
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {

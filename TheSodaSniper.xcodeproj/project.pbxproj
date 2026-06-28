@@ -43,7 +43,9 @@
 		228635452FEFB8CD00A3D8A1 /* Exceptions for "TheSodaSniper" folder in "Controller Watch App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"Sound/bg-music.wav",
 				"Sound/bottle-cap-shoot.wav",
+				"Sound/broken-bottle.wav",
 			);
 			target = 222336392FEAE8AA00FE2EFA /* Controller Watch App */;
 		};

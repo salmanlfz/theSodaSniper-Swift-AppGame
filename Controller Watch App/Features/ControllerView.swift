@@ -19,7 +19,7 @@ struct ControllerView: View {
                 Text("Yaw: \(sensor.localData.yaw, specifier: "%.2f")")
                 
                 Button {
-                    sensor.localData.isCalibrated = true
+                    sensor.triggerCalibration()
                 } label: {
                     Text("Calibrate")
                 }
@@ -27,27 +27,27 @@ struct ControllerView: View {
                 .tint(.blue)
             }
             
-            VStack{
-                HStack{
-                    Button {
-                        sensor.localData.message = "Hi from watch"
-                    } label: {
-                        Text("Hi")
-                    }
-                    .buttonStyle(.borderedProminent)
-                    
-                    Button {
-                        sensor.localData.message = "iphone cupu"
-                    } label: {
-                        Text("Boo")
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.red)
-                }
-                
-                Text(sensor.remoteData.message)
-                
-            }
+//            VStack{
+//                HStack{
+//                    Button {
+//                        sensor.localData.message = "Hi from watch"
+//                    } label: {
+//                        Text("Hi")
+//                    }
+//                    .buttonStyle(.borderedProminent)
+//                    
+//                    Button {
+//                        sensor.localData.message = "iphone cupu"
+//                    } label: {
+//                        Text("Boo")
+//                    }
+//                    .buttonStyle(.borderedProminent)
+//                    .tint(.red)
+//                }
+//                
+//                Text(sensor.remoteData.message)
+//                
+//            }
         }
         .onAppear {
             sensor.readSensor()
