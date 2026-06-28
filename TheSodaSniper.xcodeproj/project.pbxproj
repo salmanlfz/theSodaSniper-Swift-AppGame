@@ -39,9 +39,22 @@
 		2223363A2FEAE8AA00FE2EFA /* Controller Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Controller Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		228635452FEFB8CD00A3D8A1 /* Exceptions for "TheSodaSniper" folder in "Controller Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Sound/bottle-cap-shoot.wav",
+			);
+			target = 222336392FEAE8AA00FE2EFA /* Controller Watch App */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2223362A2FEAE88B00FE2EFA /* TheSodaSniper */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				228635452FEFB8CD00A3D8A1 /* Exceptions for "TheSodaSniper" folder in "Controller Watch App" target */,
+			);
 			path = TheSodaSniper;
 			sourceTree = "<group>";
 		};

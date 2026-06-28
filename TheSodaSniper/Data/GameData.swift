@@ -31,5 +31,10 @@ struct RemoteData {
     var isCalibrated: Bool = false
 
     var message: String = ""
+    
+    var accelX : Double = 0
+    var accelZ : Double = 0
+    
+    var isFire: Bool = false
 }
 

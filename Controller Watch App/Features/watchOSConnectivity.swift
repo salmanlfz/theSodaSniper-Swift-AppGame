@@ -11,7 +11,7 @@ import WatchConnectivity
 class watchOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
     static let shared = watchOSConnectivity()
     
-    weak var motionManager: MotionControl?
+    weak var motionManager: MotionManager?
         
     override init(){
         super.init()

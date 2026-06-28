@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ControllerView: View {
     @ObservedObject var message = watchOSConnectivity.shared
-    @ObservedObject var sensor = MotionControl()
+    @ObservedObject var sensor = MotionManager()
     
     var body: some View {
         TabView{

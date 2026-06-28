@@ -60,7 +60,17 @@ class iOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
                     self.localData.calibratedYaw = self.remoteData.yaw
                 }
             }
+            if let isFire = message["isFire"] as? Bool {
+                self.remoteData.isFire = isFire
+                
+                if self.remoteData.isFire {
+                    // Di dalam file iOSConnectivity atau View lu pas nangkep trigger tembak:
+                    SoundManager.shared.playShoot()
+                }
+            }
+            
             print("kalibrasi dh: \(self.remoteData.isCalibrated)")
+            print("tembak ga dh: \(self.remoteData.isFire)")
         
             let rawX = self.remoteData.roll - self.localData.calibratedRoll
             let rawZ = self.remoteData.yaw - self.localData.calibratedYaw
@@ -103,5 +113,4 @@ class iOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
         localData.dotY = finalY
 
     }
-
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct TheSodaSniperApp: App {
     var body: some Scene {
         WindowGroup {
-            MainMenuVIew()
+            MainMenuView()
         }
     }
 }

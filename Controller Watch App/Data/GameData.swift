@@ -16,6 +16,11 @@ struct LocalData {
     var isCalibrated: Bool = false
 
     var message: String = ""
+    
+    var accelX : Double = 0
+    var accelZ : Double = 0
+    
+    var isFire: Bool = false
 }
 
 // Data yang dikirim iPhone ke Watch (dari luar)
