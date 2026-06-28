@@ -15,6 +15,9 @@ class ShootingArenaScene: SKScene {
     // List botol yang sedang aktif di arena
     var bottles: [BottleNode] = []
     
+    // Callback ketika game selesai (semua botol habis)
+    var onGameOver: ((Int) -> Void)?
+    
     // Label untuk nampilin skor
     var scoreLabel: SKLabelNode!
     var score: Int = 0 {
@@ -146,12 +149,13 @@ class ShootingArenaScene: SKScene {
         // Hitung botol yang tersisa
         let activeBottles = bottles.filter { !$0.isBroken }
         if activeBottles.isEmpty {
-            // Semua botol pecah! Tunggu 1.2 detik terus spawn rak baru biar mainnya seru terus!
-            let wait = SKAction.wait(forDuration: 1.2)
-            let respawn = SKAction.run { [weak self] in
-                self?.spawnBottles()
+            // Semua botol pecah! Tunggu 0.8 detik (agar SFX botol pecah terakhir sempat terdengar), lalu panggil callback selesai
+            let wait = SKAction.wait(forDuration: 0.8)
+            let triggerGameOver = SKAction.run { [weak self] in
+                guard let self = self else { return }
+                self.onGameOver?(self.score)
             }
-            run(SKAction.sequence([wait, respawn]))
+            run(SKAction.sequence([wait, triggerGameOver]))
         }
     }
     

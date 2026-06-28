@@ -106,7 +106,7 @@ class iOSConnectivity: NSObject, ObservableObject, WCSessionDelegate {
     }
         
     func processAiming(rawZ: Double, rawX: Double){
-        let gainX: CGFloat = 1600.0
+        let gainX: CGFloat = 800.0
         let gainY: CGFloat = 400.0
         
         let calculatedX = (gainX * CGFloat(rawZ)) + (screenWidth/2)

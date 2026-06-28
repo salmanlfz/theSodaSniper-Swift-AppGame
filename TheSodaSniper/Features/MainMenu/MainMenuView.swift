@@ -20,7 +20,11 @@ struct MainMenuView: View {
     var body: some View {
         if isPlaying {
             // Buka arena bermain
-            ShootingView()
+            ShootingView(onExit: {
+                withAnimation(.spring()) {
+                    isPlaying = false
+                }
+            })
                 .transition(.opacity)
         } else {
             ZStack {
