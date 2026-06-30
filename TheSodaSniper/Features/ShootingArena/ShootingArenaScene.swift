@@ -51,7 +51,7 @@ class ShootingArenaScene: SKScene {
         
         // 3. Tambahkan Crosshair (Kekeran)
         // Kita pakai aset gambar "Image" (karena folder asset kita bernama Image)
-        crosshair = SKSpriteNode(imageNamed: "Image")
+        crosshair = SKSpriteNode(imageNamed: "crosshair")
         crosshair.size = CGSize(width: 50, height: 50)
         crosshair.position = CGPoint(x: size.width / 2, y: size.height / 2)
         crosshair.zPosition = 100 // Paling depan
